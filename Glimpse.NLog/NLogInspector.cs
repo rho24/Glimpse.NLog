@@ -6,12 +6,28 @@ namespace Glimpse.NLog
 {
     public class NlogInspector : IInspector
     {
-        public void Setup(IInspectorContext context) {
-            var target = new GlimpseTarget(context.MessageBroker, context.TimerStrategy) {Name = "glimpse"};
+        private GlimpseTarget _target;
 
-            LogManager.Configuration.AddTarget("glimpse", target);
-            LogManager.Configuration.LoggingRules.Add(new LoggingRule("*", LogLevel.Trace, target));
+        public void Setup(IInspectorContext context) {
+            _target = new GlimpseTarget(context.MessageBroker, context.TimerStrategy) {Name = "glimpse"};
+
+            LogManager.ConfigurationReloaded += LogManagerOnConfigurationReloaded;
+
+            AttachLogTarget();
+        }
+
+        private void AttachLogTarget() {
+            if (LogManager.Configuration == null) return;
+
+            if (LogManager.Configuration.AllTargets.Contains(_target)) return;
+
+            LogManager.Configuration.AddTarget("glimpse", _target);
+            LogManager.Configuration.LoggingRules.Add(new LoggingRule("*", LogLevel.Trace, _target));
             LogManager.Configuration.Reload();
+        }
+
+        private void LogManagerOnConfigurationReloaded(object sender, LoggingConfigurationReloadedEventArgs loggingConfigurationReloadedEventArgs) {
+            AttachLogTarget();
         }
     }
 }

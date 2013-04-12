@@ -6,6 +6,7 @@
     <authors>Richard Oliver</authors>
     <owners>Richard Oliver</owners>
     <projectUrl>https://github.com/rho24/Glimpse.NLog</projectUrl>
+    <licenseUrl>https://raw.github.com/rho24/Glimpse.NLog/master/license.txt</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Plugin for Glimpse showing NLog information</description>
     <releaseNotes>Initial Release.</releaseNotes>

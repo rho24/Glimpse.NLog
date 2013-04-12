@@ -17,7 +17,7 @@ namespace Glimpse.NLog
                                                          }).Build();
 
         public string Name {
-            get { return "Trace"; }
+            get { return "NLog"; }
         }
 
         public RuntimeEvent ExecuteOn {

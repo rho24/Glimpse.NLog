@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Glimpse.NLog</id>
+    <version>1.0.0-local</version>
+    <authors>Richard Oliver</authors>
+    <owners>Richard Oliver</owners>
+    <projectUrl>https://github.com/rho24/Glimpse.NLog</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Plugin for Glimpse showing NLog information</description>
+    <releaseNotes>Initial Release.</releaseNotes>
+    <tags>Glimpse NLog</tags>
+    <dependencies>
+      <dependency id="Glimpse" version="1.2.0" />
+      <dependency id="NLog" version="2.0.1.2" />
+    </dependencies>
+  </metadata>
+</package>

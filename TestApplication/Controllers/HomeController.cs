@@ -16,7 +16,7 @@ namespace TestApplication.Controllers
             logger.Info("Info message");
             logger.Warn("Warn message");
             logger.Error("Error message");
-            logger.ErrorException("Error message", new NotImplementedException());
+            logger.ErrorException("Error message with exception", new NotImplementedException());
             logger.Fatal("Fatal message");
 
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";

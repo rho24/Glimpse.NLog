@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Glimpse.Core.Extensibility;
 using Glimpse.Core.Tab.Assist;
+using NLog;
 
 namespace Glimpse.NLog
 {
@@ -14,10 +15,30 @@ namespace Glimpse.NLog
                     .Column(item.Logger)
                     .Column(item.Message)
                     .Column(item.FromFirst.TotalMilliseconds.ToString("0.00"))
-                    .Column(item.FromLast.TotalMilliseconds.ToString("0.00"));
+                    .Column(item.FromLast.TotalMilliseconds.ToString("0.00"))
+                    .ApplyRowStyle(StyleFromLevel(item.Level));
             }
 
             return root.Build();
+        }
+
+        private string StyleFromLevel(LogLevel level) {
+            switch (level.Name) {
+                case "Trace":
+                    return "trace";
+                case "Debug":
+                    return "debug";
+                case "Info":
+                    return "info";
+                case "Warn":
+                    return "warn";
+                case "Error":
+                    return "error";
+                case "Fatal":
+                    return "fail";
+                default:
+                    return "";
+            }
         }
     }
 }

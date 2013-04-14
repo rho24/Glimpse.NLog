@@ -48,7 +48,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GlimpseTarget.cs" />
-    <Compile Include="ListOfNLogEventInfoMessageConverter.cs" />
     <Compile Include="NLogEventInfoMessage.cs" />
     <Compile Include="NLogInspector.cs" />
     <Compile Include="NLogTab.cs" />

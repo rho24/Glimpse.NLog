@@ -1,21 +1,13 @@
 ﻿using System;
 using Glimpse.Core.Extensibility;
 using Glimpse.Core.Extensions;
-using Glimpse.Core.Tab.Assist;
 
 namespace Glimpse.NLog
 {
     public class NLogTab : ITab, ITabLayout, ITabSetup
     {
-        private static readonly object Layout = TabLayout.Create()
-                                                         .Row(r => {
-                                                             r.Cell(0).WidthInPixels(100);
-                                                             r.Cell(1).WidthInPixels(100);
-                                                             r.Cell(2);
-                                                             r.Cell(3).WidthInPercent(10).Suffix(" ms").AlignRight().Prefix("T+ ").Class("mono");
-                                                             r.Cell(4).WidthInPercent(5).Suffix(" ms").AlignRight().Class("mono");
-                                                         }).Build();
-
+        private static readonly object Layout = ListOfNLogEventInfoMessageConverter.Layout();
+        
         public string Name {
             get { return "NLog"; }
         }

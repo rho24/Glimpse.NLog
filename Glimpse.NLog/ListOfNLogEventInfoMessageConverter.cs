@@ -22,6 +22,18 @@ namespace Glimpse.NLog
             return root.Build();
         }
 
+
+        public static object Layout() {
+            return TabLayout.Create()
+                            .Row(r => {
+                                r.Cell(0).WidthInPixels(100);
+                                r.Cell(1).WidthInPixels(100);
+                                r.Cell(2);
+                                r.Cell(3).WidthInPercent(10).Suffix(" ms").AlignRight().Prefix("T+ ").Class("mono");
+                                r.Cell(4).WidthInPercent(5).Suffix(" ms").AlignRight().Class("mono");
+                            }).Build();
+        }
+
         private string StyleFromLevel(LogLevel level) {
             switch (level.Name) {
                 case "Trace":

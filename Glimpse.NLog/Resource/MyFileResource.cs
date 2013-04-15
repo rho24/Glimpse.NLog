@@ -9,6 +9,7 @@ namespace Glimpse.NLog.Resource
 {
     /// <summary>
     /// The <see cref="IResource"/> abstraction which makes returning static resources embedded into a Dll easier.
+    /// Copied from Glimpse.Core FileResource.cs
     /// </summary>
     public abstract class MyFileResource : IResource
     {

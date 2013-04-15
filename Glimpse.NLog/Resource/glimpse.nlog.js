@@ -1,4 +1,6 @@
-﻿// glimpse.nlog.js
+﻿// Initially copied from glimpse.timeline.js
+
+// glimpse.nlog.js
 (function($, pubsub, settings, util, renderEngine) {
     var nlog = {};
     window.nlog = nlog;

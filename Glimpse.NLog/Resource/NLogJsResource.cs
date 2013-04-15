@@ -13,7 +13,7 @@ namespace Glimpse.NLog.Resource
         }
 
         public ScriptOrder Order {
-            get { return ScriptOrder.ClientInterfaceScript; }
+            get { return ScriptOrder.IncludeAfterClientInterfaceScript; }
         }
 
         public string GetResourceName() {

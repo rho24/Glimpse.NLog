@@ -6,7 +6,7 @@ using NLog;
 
 namespace Glimpse.NLog
 {
-    public class NLogTab : ITab, ITabLayout, ITabSetup
+    public class NLogTab : ITab, ITabLayout, ITabSetup, IKey
     {
         private static readonly object Layout = TabLayout.Create()
                                                          .Row(r => {
@@ -16,6 +16,10 @@ namespace Glimpse.NLog
                                                              r.Cell(3).WidthInPixels(120).Suffix(" ms").AlignRight().Prefix("T+ ").Class("mono");
                                                              r.Cell(4).WidthInPixels(80).Suffix(" ms").AlignRight().Class("mono");
                                                          }).Build();
+
+        public string Key {
+            get { return "glimpse_nlog"; }
+        }
 
         public string Name {
             get { return "NLog"; }
@@ -33,7 +37,7 @@ namespace Glimpse.NLog
             var section = Plugin.Create("Level", "Logger", "Message", "From Request Start", "From Last");
             foreach (var item in context.GetMessages<NLogEventInfoMessage>()) {
                 section.AddRow()
-                       .Column(item.Level.ToString())
+                       .Column(string.Format("<span data-levelNum='{0}'>{1}</span>", NumberFromLevel(item.Level), item.Level)).Raw()
                        .Column(item.Logger)
                        .Column(item.Message)
                        .Column(item.FromFirst.TotalMilliseconds.ToString("0.00"))
@@ -68,6 +72,25 @@ namespace Glimpse.NLog
                     return "fail";
                 default:
                     return "";
+            }
+        }
+
+        private int NumberFromLevel(LogLevel level) {
+            switch (level.Name) {
+                case "Trace":
+                    return 1;
+                case "Debug":
+                    return 2;
+                case "Info":
+                    return 3;
+                case "Warn":
+                    return 4;
+                case "Error":
+                    return 5;
+                case "Fatal":
+                    return 6;
+                default:
+                    return 0;
             }
         }
     }

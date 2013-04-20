@@ -10,9 +10,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{729013
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApplication", "TestApplication\TestApplication.csproj", "{C92EE89B-2DEE-4576-A134-A3BE7FA6772E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mvc4Example", "Mvc4Example\Mvc4Example.csproj", "{C92EE89B-2DEE-4576-A134-A3BE7FA6772E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glimpse.NLog.Specs", "Glimpse.NLog.Specs\Glimpse.NLog.Specs.csproj", "{F870D03E-C9FA-41F8-A333-4B26E9FBD4DB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glimpse.NLog.Tests", "Glimpse.NLog.Tests\Glimpse.NLog.Tests.csproj", "{F870D03E-C9FA-41F8-A333-4B26E9FBD4DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -44,8 +44,9 @@
     <Reference Include="FakeItEasy">
       <HintPath>..\packages\FakeItEasy.1.10.0\lib\net40\FakeItEasy.dll</HintPath>
     </Reference>
-    <Reference Include="Glimpse.Core">
-      <HintPath>..\Glimpse.NLog\bin\Debug\Glimpse.Core.dll</HintPath>
+    <Reference Include="Glimpse.Core, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Glimpse.1.2.0\lib\net45\Glimpse.Core.dll</HintPath>
     </Reference>
     <Reference Include="Machine.Fakes">
       <HintPath>..\packages\Machine.Fakes.1.4.0\lib\net40\Machine.Fakes.dll</HintPath>

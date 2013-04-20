@@ -23,7 +23,8 @@ namespace Glimpse.NLog
 
             LogManager.Configuration.AddTarget("glimpse", _target);
             LogManager.Configuration.LoggingRules.Add(new LoggingRule("*", LogLevel.Trace, _target));
-            LogManager.Configuration.Reload();
+
+            LogManager.Configuration = LogManager.Configuration; //Re initialize configuration.
         }
 
         private void LogManagerOnConfigurationReloaded(object sender, LoggingConfigurationReloadedEventArgs loggingConfigurationReloadedEventArgs) {

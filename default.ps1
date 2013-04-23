@@ -43,7 +43,7 @@ task prePack -depends test {
 
 task pack -depends prePack {
 
-	if($ciNumber) { $preVersion = "ci{0:00000}" -f $ciNumber }
+	if($ciNumber) { $preVersion = "CI{0:00000}" -f $ciNumber }
 	else { $preVersion = "local" }
 
 	$version = "$(Get-NuSpecVersion("$packageTemp_dir\Glimpse.NLog.nuspec"))-$preVersion"

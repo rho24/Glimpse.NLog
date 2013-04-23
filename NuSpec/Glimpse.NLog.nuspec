@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
-<package >
+<package>
   <metadata>
     <id>Glimpse.NLog</id>
-    <version>1.1.0-local</version>
+    <version>1.1.0</version>
     <authors>Richard Oliver</authors>
     <owners>Richard Oliver</owners>
     <projectUrl>https://github.com/rho24/Glimpse.NLog</projectUrl>
     <licenseUrl>https://raw.github.com/rho24/Glimpse.NLog/master/license.txt</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Plugin for Glimpse showing NLog information</description>
-    <releaseNotes>Initial Release.</releaseNotes>
+    <releaseNotes>Added .Net 4.0 support</releaseNotes>
     <tags>Glimpse NLog</tags>
     <dependencies>
       <dependency id="Glimpse" version="1.2.0" />

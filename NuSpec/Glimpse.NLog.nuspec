@@ -16,4 +16,9 @@
       <dependency id="NLog" version="2.0.0.0" />
     </dependencies>
   </metadata>
+  <files>
+    <file src="**\*.*" target="" />
+    <file src="..\..\Glimpse.NLog\**\*.cs" target="src" />
+    <file src="..\..\Glimpse.NLog\**\*.js" target="src" />
+  </files>
 </package>

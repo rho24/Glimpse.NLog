@@ -56,7 +56,6 @@
     <Compile Include="Resource\NLogJsResource.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Package.nuspec" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

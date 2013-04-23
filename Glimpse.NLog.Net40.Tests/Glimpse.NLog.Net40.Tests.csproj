@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F870D03E-C9FA-41F8-A333-4B26E9FBD4DB}</ProjectGuid>
+    <ProjectGuid>{F310363F-DB8D-4EA8-8DA9-B73F5C4A8C7C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Glimpse.NLog.Tests</RootNamespace>
-    <AssemblyName>Glimpse.NLog.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>Glimpse.NLog.Net40.Tests</RootNamespace>
+    <AssemblyName>Glimpse.NLog.Net40.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
@@ -33,7 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core">
-      <HintPath>..\packages\Castle.Core.3.2.0\lib\net45\Castle.Core.dll</HintPath>
+      <HintPath>..\packages\Castle.Core.3.2.0\lib\net40-client\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="developwithpassion.specifications">
       <HintPath>..\packages\developwithpassion.specifications.fakeiteasy.0.6.0\lib\developwithpassion.specifications.dll</HintPath>
@@ -46,7 +47,7 @@
     </Reference>
     <Reference Include="Glimpse.Core, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Glimpse.1.2.0\lib\net45\Glimpse.Core.dll</HintPath>
+      <HintPath>..\packages\Glimpse.1.2.0\lib\net40\Glimpse.Core.dll</HintPath>
     </Reference>
     <Reference Include="Machine.Fakes">
       <HintPath>..\packages\Machine.Fakes.1.4.0\lib\net40\Machine.Fakes.dll</HintPath>
@@ -61,7 +62,7 @@
       <HintPath>..\packages\Machine.Specifications.0.5.12\lib\net40\Machine.Specifications.Clr4.dll</HintPath>
     </Reference>
     <Reference Include="NLog">
-      <HintPath>..\packages\NLog.2.0.1.2\lib\net45\NLog.dll</HintPath>
+      <HintPath>..\packages\NLog.2.0.1.2\lib\net40\NLog.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -72,14 +73,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="When_executing_setup.cs" />
+    <Compile Include="..\Glimpse.NLog.Tests\When_executing_setup.cs">
+      <Link>When_executing_setup.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="NLog.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <None Include="NLog.xsd">
+    <None Include="..\Glimpse.NLog.Tests\NLog.config">
+      <Link>NLog.config</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Glimpse.NLog.Tests\NLog.xsd">
+      <Link>NLog.xsd</Link>
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config">
@@ -87,9 +92,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Glimpse.NLog\Glimpse.NLog.csproj">
-      <Project>{47630b23-bae2-4391-befd-19316e643be4}</Project>
-      <Name>Glimpse.NLog</Name>
+    <ProjectReference Include="..\Glimpse.NLog.Net40\Glimpse.NLog.Net40.csproj">
+      <Project>{4571dc0f-c2f8-4129-8aad-dfa19e712051}</Project>
+      <Name>Glimpse.NLog.Net40</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

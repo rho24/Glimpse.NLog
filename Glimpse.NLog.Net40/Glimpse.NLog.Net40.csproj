@@ -47,9 +47,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config">
       <SubType>Designer</SubType>
@@ -71,6 +69,17 @@
     <Compile Include="..\Glimpse.NLog\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="..\Glimpse.NLog\Resource\MyFileResource.cs">
+      <Link>Resource\MyFileResource.cs</Link>
+    </Compile>
+    <Compile Include="..\Glimpse.NLog\Resource\NLogJsResource.cs">
+      <Link>Resource\NLogJsResource.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\Glimpse.NLog\Resource\glimpse.nlog.js">
+      <Link>Resource\glimpse.nlog.js</Link>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

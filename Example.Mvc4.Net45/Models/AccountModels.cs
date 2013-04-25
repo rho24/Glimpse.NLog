@@ -6,7 +6,7 @@ using System.Data.Entity;
 using System.Globalization;
 using System.Web.Security;
 
-namespace Mvc4Example.Models
+namespace Example.Mvc4.Net45.Models
 {
     public class UsersContext : DbContext
     {

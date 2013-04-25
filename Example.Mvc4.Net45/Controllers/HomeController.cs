@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using NLog;
 
-namespace Mvc4Example.Controllers
+namespace Example.Mvc4.Net45.Controllers
 {
     public class HomeController : Controller
     {

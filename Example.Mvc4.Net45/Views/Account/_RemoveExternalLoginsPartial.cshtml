@@ -1,11 +1,11 @@
-﻿@model ICollection<Mvc4Example.Models.ExternalLogin>
+﻿@model ICollection<Example.Mvc4.Net45.Models.ExternalLogin>
 
 @if (Model.Count > 0)
 {
     <h3>Registered external logins</h3>
     <table>
         <tbody>
-        @foreach (Mvc4Example.Models.ExternalLogin externalLogin in Model)
+        @foreach (Example.Mvc4.Net45.Models.ExternalLogin externalLogin in Model)
         {
             <tr>
                 <td>@externalLogin.ProviderDisplayName</td>

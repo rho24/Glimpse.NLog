@@ -3,10 +3,10 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Threading;
 using System.Web.Mvc;
-using Mvc4Example.Models;
+using Example.Mvc4.Net45.Models;
 using WebMatrix.WebData;
 
-namespace Mvc4Example.Filters
+namespace Example.Mvc4.Net45.Filters
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
     public sealed class InitializeSimpleMembershipAttribute : ActionFilterAttribute

@@ -1,8 +1,9 @@
 properties {
   $ciNumber = $null
   $publish = $false
-
-
+  
+  $release = $false
+  
   $base_dir = resolve-path .
   $build_dir = "$base_dir\build"
   $packageTemp_dir = "$build_dir\prePackage"
@@ -42,20 +43,18 @@ task prePack -depends test {
 }
 
 task pack -depends prePack {
+  $version = Get-NuSpecVersion("$packageTemp_dir\Glimpse.NLog.nuspec")
 
-  if($ciNumber) { $preVersion = "CI{0:00000}" -f $ciNumber }
-  else { $preVersion = "local" }
-
-  $version = "$(Get-NuSpecVersion("$packageTemp_dir\Glimpse.NLog.nuspec"))-$preVersion"
-
+  if(!$release) {
+    if($ciNumber) { $preVersion = "CI{0:00000}" -f $ciNumber }
+    else { $preVersion = "local" }
+    $version = "$version-$preVersion"
+  }
+  
   exec { & $nuget pack $packageTemp_dir\Glimpse.NLog.nuspec -Symbols -OutputDirectory $build_dir -Version $version }
 }
 
-task ci -depends pack {
-  if(!$ciNumber) {
-    throw "Need ciNumber for publishPreRelease"
-  }
-
+task publish -depends pack {
   if($publish) { "PUBLISHING" } else { "Dummy publishing run..." }
 
   $packages = ls $build_dir\* -Include *.nupkg -Exclude *.symbols.nupkg
@@ -71,6 +70,18 @@ task ci -depends pack {
   }
 }
 
+task ci {
+  if(!$ciNumber) {
+    throw "Need ciNumber for publishPreRelease"
+  }
+
+  Invoke-Task "publish"
+}
+
+task release {
+  $release = $true
+  Invoke-Task "publish"
+}
 
 
 function Get-NuSpecVersion($path)

@@ -9,7 +9,10 @@
     <licenseUrl>https://raw.github.com/rho24/Glimpse.NLog/master/license.txt</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Plugin for Glimpse showing NLog information</description>
-    <releaseNotes>Added .Net 4.0 support</releaseNotes>
+    <releaseNotes>
+      1.1.0 - Added .Net 4.0 support
+      1.0.0 - Initial release
+    </releaseNotes>
     <tags>Glimpse NLog</tags>
     <dependencies>
       <dependency id="Glimpse" version="1.2.0" />

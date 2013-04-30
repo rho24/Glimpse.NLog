@@ -1,7 +1,7 @@
 ﻿// Initially copied from glimpse.timeline.js
 
 // glimpse.nlog.js
-(function($, pubsub, settings, util, renderEngine) {
+(function($, pubsub, settings, util, renderEngine, data) {
     var nlog = {};
     window.nlog = nlog;
 
@@ -24,20 +24,21 @@
 
     // Render Shell
     (function() {
-        var setup = function() {
+        var setup = function () {
+
             pubsub.publish('action.nlog.shell.loading');
-
-            nlog.scope.prepend("<table class='nlog-filters'><thead class='glimpse-row-header glimpse-row-header-0'></thead><tbody>");
-            nlog.scope.append("</tbody></table>");
-
-            nlog.scope.find('.nlog-filters thead').html("<tr><th>Min Level: <select class='nlog-minlevel'><option value='1'>Trace</option><option value='2'>Debug</option><option value='3'>Info</option><option value='4'>Warn</option><option value='5'>Error</option><option value='6'>Fatal</option></select></th></tr>");
-
-            pubsub.publish('action.nlog.shell.loaded');
+            
+            var htmlUrl = data.currentMetadata().resources.glimpse_nlog_resource_htmlresource;
+            $.get(htmlUrl, function (html) {
+                html = html.replace('{0}', nlog.scope.html());
+                nlog.scope.html(html);
+                pubsub.publish('action.nlog.shell.loaded');
+            });
         };
 
         pubsub.subscribe('trigger.nlog.shell.init', setup);
     })();
-
+    
     // Events
     (function() {
         var events = function() {
@@ -67,4 +68,4 @@
         pubsub.subscribe('trigger.nlog.init', init);
         pubsub.subscribe('action.panel.rendered.glimpse_nlog', postrender);
     })();
-})(jQueryGlimpse, glimpse.pubsub, glimpse.settings, glimpse.util, glimpse.render.engine);
+})(jQueryGlimpse, glimpse.pubsub, glimpse.settings, glimpse.util, glimpse.render.engine, glimpse.data);

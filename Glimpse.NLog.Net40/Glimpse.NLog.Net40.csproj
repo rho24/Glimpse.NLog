@@ -47,7 +47,14 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="..\Glimpse.NLog\Resource\glimpse.nlog.html">
+      <Link>Resource\glimpse.nlog.html</Link>
+    </EmbeddedResource>
+    <Content Include="..\Glimpse.NLog\Resource\_references.js">
+      <Link>Resource\_references.js</Link>
+    </Content>
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
       <SubType>Designer</SubType>
@@ -69,11 +76,14 @@
     <Compile Include="..\Glimpse.NLog\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="..\Glimpse.NLog\Resource\HtmlResource.cs">
+      <Link>Resource\HtmlResource.cs</Link>
+    </Compile>
+    <Compile Include="..\Glimpse.NLog\Resource\JsResource.cs">
+      <Link>Resource\JsResource.cs</Link>
+    </Compile>
     <Compile Include="..\Glimpse.NLog\Resource\MyFileResource.cs">
       <Link>Resource\MyFileResource.cs</Link>
-    </Compile>
-    <Compile Include="..\Glimpse.NLog\Resource\NLogJsResource.cs">
-      <Link>Resource\NLogJsResource.cs</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>

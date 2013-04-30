@@ -1,12 +1,13 @@
-﻿using Glimpse.Core.Extensibility;
+﻿using System.Collections.Generic;
+using Glimpse.Core.Extensibility;
 
 namespace Glimpse.NLog.Resource
 {
-    public class NLogJsResource : MyFileResource, IDynamicClientScript
+    public class JsResource : MyFileResource, IDynamicClientScript
     {
-        private const string InternalName = "glimpse_nlog";
+        private const string InternalName = "glimpse_nlog_js";
 
-        public NLogJsResource() {
+        public JsResource() {
             ResourceName = "Glimpse.NLog.Resource.glimpse.nlog.js";
             ResourceType = @"application/x-javascript";
             Name = InternalName;

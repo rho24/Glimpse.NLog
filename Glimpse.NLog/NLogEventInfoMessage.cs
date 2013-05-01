@@ -12,5 +12,7 @@ namespace Glimpse.NLog
         public TimeSpan FromLast { get; set; }
 
         public LogEventInfo LogEvent { get; set; }
+
+        public int LevelNumber { get; set; }
     }
 }

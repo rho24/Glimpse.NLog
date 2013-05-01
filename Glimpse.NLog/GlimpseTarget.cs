@@ -32,7 +32,8 @@ namespace Glimpse.NLog
                 Message = logEvent.FormattedMessage,
                 FromFirst = timer.Point().Offset,
                 FromLast = CalculateFromLast(timer),
-                LogEvent = logEvent
+                LogEvent = logEvent,
+                LevelNumber = NumberFromLevel(logEvent.Level)
             });
         }
 
@@ -51,6 +52,25 @@ namespace Glimpse.NLog
             var result = _fromLastWatch.Elapsed;
             _fromLastWatch = Stopwatch.StartNew();
             return result;
+        }
+
+        private int NumberFromLevel(LogLevel level) {
+            switch (level.Name) {
+                case "Trace":
+                    return 1;
+                case "Debug":
+                    return 2;
+                case "Info":
+                    return 3;
+                case "Warn":
+                    return 4;
+                case "Error":
+                    return 5;
+                case "Fatal":
+                    return 6;
+                default:
+                    return 0;
+            }
         }
     }
 }

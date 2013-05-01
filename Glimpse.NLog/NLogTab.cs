@@ -37,11 +37,12 @@ namespace Glimpse.NLog
             var section = Plugin.Create("Level", "Logger", "Message", "From Request Start", "From Last");
             foreach (var item in context.GetMessages<NLogEventInfoMessage>()) {
                 section.AddRow()
-                       .Column(string.Format("<span data-levelNum='{0}'>{1}</span>", NumberFromLevel(item.Level), item.Level)).Raw()
+                       .Column(string.Format("<span data-levelNum='{0}'>{1}</span>", item.LevelNumber, item.Level)).Raw()
                        .Column(item.Logger)
                        .Column(item.Message)
                        .Column(item.FromFirst.TotalMilliseconds.ToString("0.00"))
                        .Column(item.FromLast.TotalMilliseconds.ToString("0.00"))
+                       .Column(item)
                        .ApplyRowStyle(StyleFromLevel(item.Level));
             }
 
@@ -72,25 +73,6 @@ namespace Glimpse.NLog
                     return "fail";
                 default:
                     return "";
-            }
-        }
-
-        private int NumberFromLevel(LogLevel level) {
-            switch (level.Name) {
-                case "Trace":
-                    return 1;
-                case "Debug":
-                    return 2;
-                case "Info":
-                    return 3;
-                case "Warn":
-                    return 4;
-                case "Error":
-                    return 5;
-                case "Fatal":
-                    return 6;
-                default:
-                    return 0;
             }
         }
     }

@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using Glimpse.Core.Extensibility;
+using Glimpse.Core.Resource;
 
 namespace Glimpse.NLog.Resource
 {
-    public class JsResource : MyFileResource, IDynamicClientScript
+    public class JsResource : FileResource, IDynamicClientScript
     {
         private const string InternalName = "glimpse_nlog_js";
 

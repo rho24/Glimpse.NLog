@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Glimpse.Core.Extensibility;
+using Glimpse.Core.Resource;
 
 namespace Glimpse.NLog.Resource
 {
-    public class HtmlResource : MyFileResource
+    public class HtmlResource : FileResource
     {
         private const string InternalName = "glimpse_nlog_html";
 

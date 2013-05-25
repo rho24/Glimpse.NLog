@@ -54,7 +54,6 @@
     <Compile Include="NLogTab.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resource\HtmlResource.cs" />
-    <Compile Include="Resource\MyFileResource.cs" />
     <Compile Include="Resource\JsResource.cs" />
   </ItemGroup>
   <ItemGroup>

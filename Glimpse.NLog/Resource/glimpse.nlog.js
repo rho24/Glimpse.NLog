@@ -67,9 +67,12 @@
                 filterChanged();
             });
 
-            nlog.elements.filterInput.on('input', function() {
-                terms = $(nlog.elements.filterInput).val();
-                filterChanged();
+            nlog.elements.filterInput.on('input change keyup keydown', function () {
+                var newTerms = $(nlog.elements.filterInput).val();
+                if (newTerms !== terms) {
+                    terms = newTerms;
+                    filterChanged();
+                }
             });
         };
 

@@ -4,11 +4,19 @@ properties {
   
   $release = $false
   
+  $version = $null
+  $packageVersion = $null
+  
+  
   $base_dir = resolve-path .
   $build_dir = "$base_dir\build"
   $packageTemp_dir = "$build_dir\prePackage"
   $sln = "$base_dir\Glimpse.NLog.sln"
 
+  $assemblyInfo = "$base_dir\Glimpse.NLog\Properties\AssemblyInfo.cs"
+  $tempAssemblyInfo = "$assemblyInfo.tmp"
+  
+  
   $mspec = "$(ls $base_dir\packages\Machine.Specifications.* | select -last 1)" + "\tools\mspec-clr4.exe"
   $nuget = "$base_dir\.nuget\nuget.exe"
 }
@@ -23,11 +31,29 @@ task clean {
   Delete-Directory $base_dir\**\obj
 }
 
-task compile -depends clean {
+task preCompile -depends clean {
+  
+  setVersions
+  
+  $version = version
+  $packageVersion = packageVersion
+  
+  copy $assemblyInfo $tempAssemblyInfo
+  
+  (gc $assemblyInfo -encoding utf8) -replace """1.0.0.0""" , """$version""" -replace """1.0.0.0-package""" , """$packageVersion""" | sc $assemblyInfo -encoding utf8
+}
+
+task compile -depends preCompile {
   exec { msbuild $sln /p:Configuration=Release /nologo /verbosity:minimal }
 }
 
-task test -depends compile {
+task postCompile -depends compile {
+  rm $assemblyInfo
+  copy $tempAssemblyInfo $assemblyInfo
+  rm $tempAssemblyInfo
+}
+
+task test -depends postCompile {
   exec { & $mspec $base_dir\Glimpse.NLog.Tests\bin\Release\Glimpse.NLog.Tests.dll }
   exec { & $mspec $base_dir\Glimpse.NLog.Net40.Tests\bin\Release\Glimpse.NLog.Net40.Tests.dll }
 }
@@ -43,15 +69,8 @@ task prePack -depends test {
 }
 
 task pack -depends prePack {
-  $version = Get-NuSpecVersion("$packageTemp_dir\Glimpse.NLog.nuspec")
-
-  if(!$release) {
-    if($ciNumber) { $preVersion = "CI{0:00000}" -f $ciNumber }
-    else { $preVersion = "local" }
-    $version = "$version-$preVersion"
-  }
-  
-  exec { & $nuget pack $packageTemp_dir\Glimpse.NLog.nuspec -Symbols -OutputDirectory $build_dir -Version $version }
+  $packageVersion = packageVersion
+  exec { & $nuget pack $packageTemp_dir\Glimpse.NLog.nuspec -Symbols -OutputDirectory $build_dir -Version $packageVersion }
 }
 
 task publish -depends pack {
@@ -83,6 +102,25 @@ task release {
   Invoke-Task "publish"
 }
 
+function version(){
+  return $script:version
+}
+
+function packageVersion(){
+  return $script:packageVersion
+}
+
+function setVersions()
+{
+  $script:version = Get-NuSpecVersion("$base_dir\NuSpec\Glimpse.NLog.nuspec")
+  $script:packageVersion = $script:version
+  
+  if(!$release) {
+    if($ciNumber) { $preVersion = "CI{0:00000}" -f $ciNumber }
+    else { $preVersion = "local" }
+    $script:packageVersion = "$script:version-$preVersion"
+  }
+}
 
 function Get-NuSpecVersion($path)
 {

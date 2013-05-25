@@ -38,4 +38,5 @@ using Glimpse.Core.Extensibility;
 
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-[assembly: NuGetPackage("Glimpse.NLog")]
+[assembly: AssemblyInformationalVersion("1.0.0.0-package")]
+[assembly: NuGetPackage("Glimpse.NLog", "1.0.0.0-package")]

@@ -12,7 +12,7 @@
                 //Main elements
                 elements.scope = nlog.scope;
                 elements.dataTable = nlog.scope.find('.glimpse-row-holder');
-                elements.dataRows = elements.dataTable.find('tbody tr.glimpse-row');
+                elements.dataRows = elements.dataTable.find('tbody.glimpse-row tr');
                 elements.filtersTable = nlog.scope.find('.nlog-filters');
                 elements.minLevelSelect = nlog.scope.find('select.nlog-minlevel');
                 elements.filterInput = nlog.scope.find('input.nlog-filter');

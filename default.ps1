@@ -16,8 +16,6 @@ properties {
   $assemblyInfo = "$base_dir\Glimpse.NLog\Properties\AssemblyInfo.cs"
   $tempAssemblyInfo = "$assemblyInfo.tmp"
   
-  
-  $mspec = "$(ls $base_dir\packages\Machine.Specifications.* | select -last 1)" + "\tools\mspec-clr4.exe"
   $nuget = "$base_dir\.nuget\nuget.exe"
 }
 
@@ -54,6 +52,7 @@ task postCompile -depends compile {
 }
 
 task test -depends postCompile {
+  $mspec = mspec
   exec { & $mspec $base_dir\Glimpse.NLog.Tests\bin\Release\Glimpse.NLog.Tests.dll }
   exec { & $mspec $base_dir\Glimpse.NLog.Net40.Tests\bin\Release\Glimpse.NLog.Net40.Tests.dll }
 }
@@ -120,6 +119,11 @@ function setVersions()
     else { $preVersion = "local" }
     $script:packageVersion = "$script:version-$preVersion"
   }
+}
+
+function mspec()
+{
+  return "$(ls $base_dir\packages\Machine.Specifications.* | select -last 1)" + "\tools\mspec-clr4.exe"
 }
 
 function Get-NuSpecVersion($path)

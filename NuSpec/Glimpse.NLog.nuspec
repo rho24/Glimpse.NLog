@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Glimpse.NLog</id>
-    <version>1.2.0</version>
+    <version>1.3.0</version>
     <authors>Richard Oliver</authors>
     <owners>Richard Oliver</owners>
     <projectUrl>https://github.com/rho24/Glimpse.NLog</projectUrl>
@@ -10,13 +10,14 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Plugin for Glimpse showing NLog information</description>
     <releaseNotes>
+1.3.0 - Improve appearance in new Glimpse ui
 1.2.0 - Added filter functionality
 1.1.0 - Added .Net 4.0 support
 1.0.0 - Initial release
     </releaseNotes>
     <tags>Glimpse NLog</tags>
     <dependencies>
-      <dependency id="Glimpse" version="1.3.3" />
+      <dependency id="Glimpse" version="1.6.0" />
       <dependency id="NLog" version="2.0.0.0" />
     </dependencies>
   </metadata>

@@ -28,7 +28,11 @@
         var setup = function () {
 
             pubsub.publish('action.nlog.shell.loading');
-            
+
+            var css = 'table.nlog-filters { margin: 0; } select.nlog-minlevel { border: 1px solid #e2e2e2; } input.nlog-filter { border: 1px solid #e2e2e2; }';
+
+            $('<style type="text/css">' + css + '</style>').appendTo('head');
+
             var htmlUrl = glimpseData.currentMetadata().resources.glimpse_nlog_resource_htmlresource;
             $.get(htmlUrl, function (html) {
                 html = html.replace('{0}', nlog.scope.html());

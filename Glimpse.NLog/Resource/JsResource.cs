@@ -8,9 +8,15 @@ namespace Glimpse.NLog.Resource
     {
         private const string InternalName = "glimpse_nlog_js";
 
+
+        protected override EmbeddedResourceInfo GetEmbeddedResourceInfo(IResourceContext context)
+        {
+            return new EmbeddedResourceInfo(this.GetType().Assembly, "Glimpse.NLog.Resource.glimpse.nlog.html", @"text/html");
+        }
+
         public JsResource() {
-            ResourceName = "Glimpse.NLog.Resource.glimpse.nlog.js";
-            ResourceType = @"application/x-javascript";
+//            ResourceName = "Glimpse.NLog.Resource.glimpse.nlog.js";
+            //ResourceType = @"application/x-javascript";
             Name = InternalName;
         }
 

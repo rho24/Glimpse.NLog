@@ -20,8 +20,6 @@ namespace Glimpse.NLog.Resource
 
         public HtmlResource()
         {
-            //ResourceName = "Glimpse.NLog.Resource.glimpse.nlog.html";
-            //ContentType = @"text/html";
             Name = InternalName;
         }
 

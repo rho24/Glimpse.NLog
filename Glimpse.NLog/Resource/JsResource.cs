@@ -15,10 +15,6 @@ namespace Glimpse.NLog.Resource
 
 
 
-        protected override EmbeddedResourceInfo GetEmbeddedResourceInfo(IResourceContext context)
-        {
-            return new EmbeddedResourceInfo(this.GetType().Assembly, "Glimpse.NLog.Resource.glimpse.nlog.js", @"application/x-javascript");
-        }
 
         public JsResource() {
             Name = InternalName;

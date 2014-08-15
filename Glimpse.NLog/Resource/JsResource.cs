@@ -7,10 +7,14 @@ namespace Glimpse.NLog.Resource
     public class JsResource : FileResource, IDynamicClientScript
     {
         private const string InternalName = "glimpse_nlog_js";
+        
+        protected override EmbeddedResourceInfo GetEmbeddedResourceInfo(IResourceContext context)
+        {
+            return new EmbeddedResourceInfo(this.GetType().Assembly, "Glimpse.NLog.Resource.glimpse.nlog.js", @"application/x-javascript");
+        }
+
 
         public JsResource() {
-            ResourceName = "Glimpse.NLog.Resource.glimpse.nlog.js";
-            ResourceType = @"application/x-javascript";
             Name = InternalName;
         }
 

@@ -19,8 +19,19 @@ namespace Glimpse.NLog
             _timerStrategy = timerStrategy;
         }
 
-        protected override void Write(LogEventInfo logEvent) {
-            var timer = _timerStrategy();
+        protected override void Write(LogEventInfo logEvent)
+        {
+            IExecutionTimer timer = null;
+            try
+            {
+                timer = _timerStrategy();
+            }
+            catch (Exception e)
+            {
+                
+                Trace.Write(e.ToString());
+            }
+            
 
             // Execution in on thread without access to RequestStore
             if (timer == null || _messageBroker == null)

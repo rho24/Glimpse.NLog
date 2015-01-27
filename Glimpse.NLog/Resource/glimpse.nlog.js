@@ -12,7 +12,7 @@
                 //Main elements
                 elements.scope = nlog.scope;
                 elements.dataTable = nlog.scope.find('.glimpse-row-holder');
-                elements.dataRows = elements.dataTable.find('tbody.glimpse-row tr');
+                elements.dataRows = elements.dataTable.find('tbody.glimpse-row > tr');
                 elements.filtersTable = nlog.scope.find('.nlog-filters');
                 elements.minLevelSelect = nlog.scope.find('select.nlog-minlevel');
                 elements.filterInput = nlog.scope.find('input.nlog-filter');
@@ -35,8 +35,7 @@
 
             var htmlUrl = glimpseData.currentMetadata().resources.glimpse_nlog_resource_htmlresource;
             $.get(htmlUrl, function (html) {
-                html = html.replace('{0}', nlog.scope.html());
-                nlog.scope.html(html);
+                nlog.scope.prepend(html);
                 pubsub.publish('action.nlog.shell.loaded');
             });
         };
@@ -48,7 +47,7 @@
     (function() {
         var events = function () {
             var minLevel = 0, terms = '';
-            nlog.elements.dataRows.each(function(i) {
+            nlog.elements.dataRows.each(function (i) {
                 $(this).data('row-data', glimpseData.currentData().data.glimpse_nlog.data[i + 1][5]);
             });
 

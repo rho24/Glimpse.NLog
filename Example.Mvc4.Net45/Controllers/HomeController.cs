@@ -9,13 +9,23 @@ namespace Example.Mvc4.Net45.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index() {
-            var logger = LogManager.GetLogger("HomeController");
+        public ActionResult Index()
+        {
+            var logger = LogManager.GetCurrentClassLogger();
             logger.Trace("Trace message");
             logger.Debug("Debug message");
             logger.Info("Info message");
             logger.Warn("Warn message");
             logger.Error("Error message");
+            logger.Debug(new {
+                message = "Check out this object",
+                data = new List<string>() {
+                    "Code A",
+                    "Code B",
+                    "Code C",
+                },
+                count = 3
+            });
             logger.ErrorException("Error message with exception", new NotImplementedException());
             logger.Fatal("Fatal message");
 

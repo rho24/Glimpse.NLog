@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Glimpse.Core.Extensibility;
 using Glimpse.Core.Extensions;
 using Glimpse.Core.Tab.Assist;
@@ -39,7 +40,7 @@ namespace Glimpse.NLog
                 section.AddRow()
                        .Column(string.Format("<span data-levelNum='{0}'>{1}</span>", item.LevelNumber, item.Level)).Raw()
                        .Column(item.Logger)
-                       .Column(item.Message)
+                       .Column(GetMessage(item.LogEvent))
                        .Column(item.FromFirst.TotalMilliseconds.ToString("0.00"))
                        .Column(item.FromLast.TotalMilliseconds.ToString("0.00"))
                        .Column(item)
@@ -51,6 +52,26 @@ namespace Glimpse.NLog
 
         public object GetLayout() {
             return Layout;
+        }
+
+        private object GetMessage(LogEventInfo logEventInfo)
+        {
+            // Nicer exception view
+            if (logEventInfo.Exception != null)
+            {
+                return new
+                {
+                    Message = logEventInfo.FormattedMessage,
+                    Exception = logEventInfo.Exception
+                };
+            }
+
+            // Only one object, present it
+            if (logEventInfo.Message == "{0}")
+                return logEventInfo.Parameters.FirstOrDefault();
+
+            // Fall back on formatted message
+            return logEventInfo.FormattedMessage;
         }
 
         public void Setup(ITabSetupContext context) {

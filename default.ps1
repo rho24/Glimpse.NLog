@@ -103,6 +103,12 @@ task release {
   Invoke-Task "publish"
 }
 
+task releaseAndPublish {
+  $release = $true
+  $publish = $true
+  Invoke-Task "publish"
+}
+
 function version(){
   return $script:version
 }

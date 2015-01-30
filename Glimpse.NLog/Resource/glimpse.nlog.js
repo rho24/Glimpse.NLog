@@ -56,8 +56,10 @@
                 nlog.elements.dataRows.each(function() {
                     var data = $(this).data('row-data');
 
+                    var dataToMatch = JSON.stringify(data.logEvent.parameters).toLowerCase();
+
                     var visible = data.levelNumber >= minLevel &&
-                        (terms === '' || data.message.toLowerCase().match(terms.toLowerCase()) != null);
+                        (terms === '' || dataToMatch.toLowerCase().match(terms.toLowerCase()) !== null);
 
                     $(this).toggle(visible);
                 });

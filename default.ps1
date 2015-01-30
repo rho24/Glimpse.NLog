@@ -1,13 +1,13 @@
 properties {
   $ciNumber = $null
   $publish = $false
-  
+
   $release = $false
-  
+
   $version = $null
   $packageVersion = $null
-  
-  
+
+
   $base_dir = resolve-path .
   $build_dir = "$base_dir\build"
   $packageTemp_dir = "$build_dir\prePackage"
@@ -15,8 +15,8 @@ properties {
 
   $assemblyInfo = "$base_dir\Glimpse.NLog\Properties\AssemblyInfo.cs"
   $tempAssemblyInfo = "$assemblyInfo.tmp"
-  
-  $nuget = "$base_dir\.nuget\nuget.exe"
+
+  $nuget = "$base_dir\nuget.exe"
 }
 
 #tasks -------------------------------------------------------------------------------------------------------------
@@ -30,15 +30,17 @@ task clean {
 }
 
 task preCompile -depends clean {
-  
+
   setVersions
-  
+
   $version = version
   $packageVersion = packageVersion
-  
+
   copy $assemblyInfo $tempAssemblyInfo
-  
+
   (gc $assemblyInfo -encoding utf8) -replace """1.0.0.0""" , """$version""" -replace """1.0.0.0-package""" , """$packageVersion""" | sc $assemblyInfo -encoding utf8
+
+  exec { & $nuget restore }
 }
 
 task compile -depends preCompile {
@@ -80,7 +82,7 @@ task publish -depends pack {
     "Executing: nuget.exe push $package -src http://www.myget.org/F/rholiver/"
     if($publish) { exec { & $nuget push $package -src http://www.myget.org/F/rholiver/ } }
   }
-  
+
   $symbols = ls $build_dir\*.symbols.nupkg
   foreach($symbol in $symbols){
     "Executing: nuget.exe push $symbol -src http://nuget.gw.symbolsource.org/MyGet/rholiver"
@@ -113,7 +115,7 @@ function setVersions()
 {
   $script:version = Get-NuSpecVersion("$base_dir\NuSpec\Glimpse.NLog.nuspec")
   $script:packageVersion = $script:version
-  
+
   if(!$release) {
     if($ciNumber) { $preVersion = "CI{0:00000}" -f $ciNumber }
     else { $preVersion = "local" }

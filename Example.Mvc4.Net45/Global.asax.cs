@@ -16,6 +16,7 @@ namespace Example.Mvc4.Net45
         }
 
         protected void Application_Start() {
+            WindsorBootstrap.BootstrapContainer();
             AreaRegistration.RegisterAllAreas();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
@@ -23,6 +24,11 @@ namespace Example.Mvc4.Net45
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
+        }
+
+        protected void Application_End()
+        {
+            WindsorBootstrap.Cleanup();
         }
     }
 }

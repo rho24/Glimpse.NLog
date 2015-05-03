@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Glimpse.NLog</id>
-    <version>1.6.0</version>
+    <version>1.6.1</version>
     <authors>Richard Oliver</authors>
     <owners>Richard Oliver</owners>
     <projectUrl>https://github.com/rho24/Glimpse.NLog</projectUrl>
@@ -10,6 +10,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Plugin for Glimpse showing NLog information</description>
     <releaseNotes>
+1.6.1 - Fixed bug with udp target
 1.6.0 - Revert back to framework 4.5.0
 1.5.0 - Show logged objects - contributed by sorenml
 1.4.0 - Update to Glimpse.Core 1.8.6

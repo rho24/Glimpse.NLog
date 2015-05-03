@@ -11,15 +11,19 @@ namespace Example.Mvc4.Net45.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger _injectedLogger;
+        private readonly ILoggerFactory _loggerFactory;
 
-        public HomeController(ILogger injectedLogger)
+        public HomeController(ILogger injectedLogger, ILoggerFactory loggerFactory)
         {
             _injectedLogger = injectedLogger;
+            _loggerFactory = loggerFactory;
         }
 
         public ActionResult Index()
         {
             _injectedLogger.Info("Injected info message");
+
+            _loggerFactory.Create("injected factory").Info("Injected factory info message");
 
             var logger = LogManager.GetCurrentClassLogger();
             logger.Trace("Trace message");

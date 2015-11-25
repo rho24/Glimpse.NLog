@@ -24,7 +24,7 @@ namespace Example.Mvc4.Net40.Controllers
                 },
                 count = 3
             });
-            logger.ErrorException("Error message with exception", new NotImplementedException());
+            logger.Error(new NotImplementedException(),"Error message with exception");
             logger.Fatal("Fatal message");
 
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";

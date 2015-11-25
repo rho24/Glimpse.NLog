@@ -56,7 +56,7 @@
                 nlog.elements.dataRows.each(function() {
                     var data = $(this).data('row-data');
 
-                    var dataToMatch = JSON.stringify(data.logEvent.parameters).toLowerCase();
+                    var dataToMatch = data.logEvent.formattedMessage + ' ' + JSON.stringify(data.logEvent.parameters) + ' ' + JSON.stringify(data.logEvent.exception);
 
                     var visible = data.levelNumber >= minLevel &&
                         (terms === '' || dataToMatch.toLowerCase().match(terms.toLowerCase()) !== null);

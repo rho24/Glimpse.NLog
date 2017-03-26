@@ -28,8 +28,8 @@ namespace Glimpse.NLog
             }
             catch (Exception e)
             {
-                
-                Trace.Write(e.ToString());
+                // Cannot trace here as there may be an nlog listener causing a stack overflow, see https://github.com/rho24/Glimpse.NLog/issues/23#issuecomment-288949309
+                // Trace.Write(e.ToString());
             }
             
 

@@ -36,6 +36,7 @@ UpgradeLog.htm
 Backup/
 [Pp]ackages/
 *.tmp
+.vs/
 
 #Tooling
 _ReSharper*/
